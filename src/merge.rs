@@ -53,7 +53,6 @@ pub fn merge(orig: &str, edit: &str, common: &str, split: &str) -> Vec<Differenc
     ret
 }
 
-
 #[test]
 fn test_merge() {
     assert_eq!(

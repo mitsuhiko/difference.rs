@@ -22,7 +22,6 @@ fn strsplit<'a>(s: &'a str, split: &str) -> Vec<&'a str> {
 // This algorithm is based on
 // https://en.wikipedia.org/wiki/Longest_common_subsequence_problem#Code_for_the_dynamic_programming_solution
 #[allow(non_snake_case)]
-#[cfg_attr(feature = "cargo-clippy", allow(many_single_char_names))]
 pub fn lcs(orig: &str, edit: &str, split: &str) -> (i32, String) {
     // make list by custom splits
     let a = strsplit(orig, split);

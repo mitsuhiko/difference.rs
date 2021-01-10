@@ -1,6 +1,6 @@
-extern crate term;
 extern crate difference;
-use difference::{Difference, Changeset};
+extern crate term;
+use difference::{Changeset, Difference};
 use std::io::Write;
 
 // Screenshot:

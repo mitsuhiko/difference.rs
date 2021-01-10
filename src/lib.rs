@@ -45,7 +45,7 @@ use crate::merge::merge;
 /// Defines the contents of a changeset
 /// Changesets will be delivered in order of appearance in the original string
 /// Sequences of the same kind will be grouped into one Difference
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug, Clone)]
 pub enum Difference {
     /// Sequences that are the same
     Same(String),
@@ -56,6 +56,7 @@ pub enum Difference {
 }
 
 /// The information about a full changeset
+#[derive(Debug, Clone)]
 pub struct Changeset {
     /// An ordered vector of `Difference` objects, coresponding
     /// to the differences within the text

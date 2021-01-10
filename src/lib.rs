@@ -10,11 +10,7 @@
 //! difference = "2.0"
 //! ```
 //!
-//! Now you can use the crate in your code
-//!
-//! ```ignore
-//! extern crate difference;
-//! ```
+//! Now you can use the crate in your code.
 //!
 //! ## Examples
 //!

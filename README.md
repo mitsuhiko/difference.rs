@@ -22,25 +22,11 @@ assert_eq!(changeset.diffs, vec![
 ![](https://raw.githubusercontent.com/johannhof/difference.rs/master/assets/github-style.png)
 
 Usage
-----------
+-----
 
 Add the following to your Cargo.toml:
 
 ```toml
 [dependencies]
 difference = "2.0"
-```
-
-Now you can use the crate in your code
-```rust
-extern crate difference;
-```
-
-Using the binary
------------------
-
-difference can also be used as a command-line application. The best way to install it is using:
-
-```sh
-$ cargo install --features=bin
 ```

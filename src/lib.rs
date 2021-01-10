@@ -34,7 +34,6 @@
 //! ```
 
 #![deny(missing_docs)]
-#![deny(warnings)]
 
 mod display;
 mod lcs;

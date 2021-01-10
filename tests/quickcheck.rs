@@ -1,9 +1,7 @@
-extern crate difference;
-extern crate quickcheck;
+use std::fmt;
 
 use difference::{Changeset, Difference};
-use quickcheck::{TestResult, quickcheck, QuickCheck};
-use std::fmt;
+use quickcheck::{quickcheck, QuickCheck, TestResult};
 
 const DEBUG: bool = false;
 
@@ -18,9 +16,7 @@ impl<'a> fmt::Display for Check<'a> {
         write!(
             f,
             "Changeset::new({:?}, {:?}, {:?}) -> [",
-            self.old,
-            self.new,
-            self.changeset.split
+            self.old, self.new, self.changeset.split
         )?;
 
         let mut iter = self.changeset.diffs.iter();
@@ -74,14 +70,16 @@ impl<'a> Check<'a> {
         let got_old = old.join(split);
         let got_new = new.join(split);
         if got_old != self.old {
-            return TestResult::error(format!("Diff output implies old=`{:?}`, not `{:?}` in {}",
-                        got_old, self.old, self,
-                ));
+            return TestResult::error(format!(
+                "Diff output implies old=`{:?}`, not `{:?}` in {}",
+                got_old, self.old, self,
+            ));
         }
         if got_new != self.new {
-            return TestResult::error(format!("Diff output implies new=`{:?}`, not `{:?}` in {}",
-                        got_new, self.new, self,
-                ));
+            return TestResult::error(format!(
+                "Diff output implies new=`{:?}`, not `{:?}` in {}",
+                got_new, self.new, self,
+            ));
         }
 
         TestResult::passed()
@@ -100,7 +98,6 @@ fn issue_19() {
 }
 
 #[test]
-#[allow(needless_pass_by_value)]
 fn fuzzy() {
     fn prop(old: Vec<usize>, new: Vec<usize>, words: Vec<char>) -> TestResult {
         if words.is_empty() {
@@ -108,16 +105,16 @@ fn fuzzy() {
         }
 
         fn map_to_words(input: &[usize], words: &[char]) -> String {
-            input.iter().enumerate().fold(
-                String::new(),
-                |mut acc, (i, x)| {
+            input
+                .iter()
+                .enumerate()
+                .fold(String::new(), |mut acc, (i, x)| {
                     if i > 0 {
                         acc.push(' ');
                     }
                     acc.push(words[x % words.len()]);
                     acc
-                },
-            )
+                })
         }
         let old = map_to_words(&old, &words);
         let new = map_to_words(&new, &words);
